@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AppsFactoryTask/AppsFactoryTask" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/CatFact" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/FlashTask" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/KotlinBasicsTeach" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/OneFootballTask" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ParentAps" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SinnerSchraderTask" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Tide/TideTaskJava" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/currencyhistory" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flash" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/hk-task" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/mytaxitask" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/stv-task-java" vcs="Git" />
+  </component>
+</project>
