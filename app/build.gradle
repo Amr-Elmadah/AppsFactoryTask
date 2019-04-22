@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
+def DEBUG = true
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -17,7 +17,31 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "developer"
+
+    productFlavors.all {
+        DEBUG = true
+        buildConfigField "boolean", "DEBUG", "" + DEBUG
+    }
+    productFlavors {
+        staging {
+            dimension "developer"
+            DEBUG = true
+            buildConfigField "boolean", "DEBUG", "" + DEBUG
+        }
+        production {
+            dimension "developer"
+            DEBUG = false
+            buildConfigField "boolean", 'DEBUG', "" + DEBUG
         }
     }
 }
