@@ -1,7 +1,8 @@
-package com.tasks.appsfactorytask
+package com.tasks.appsfactorytask.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.tasks.appsfactorytask.R
 
 class MainActivity : AppCompatActivity() {
 
