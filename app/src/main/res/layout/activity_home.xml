@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include
+            android:id="@+id/llNoData"
+            layout="@layout/layout_no_data"
+            android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rclAlbums"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_curved"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:text="@string/search_online"
+            app:layout_anchorGravity="bottom|center"
+            android:layout_marginBottom="@dimen/_20sdp"
+            app:layout_anchor="@+id/rclAlbums"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

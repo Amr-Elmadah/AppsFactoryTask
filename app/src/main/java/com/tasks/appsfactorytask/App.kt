@@ -1,53 +1,43 @@
 package com.tasks.appsfactorytask
 
-import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Application
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
-import com.squareup.leakcanary.LeakCanary
-import com.tasks.appsfactorytask.baseMVVM.ActivityLifecycleHandler
-import com.tasks.appsfactorytask.injection.AppComponent
+import com.facebook.stetho.Stetho
 import com.tasks.appsfactorytask.injection.DaggerAppComponent
-import com.tasks.appsfactorytask.injection.context.ContextModule
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import javax.inject.Inject
 
-@SuppressLint("ShowToast")
-class App : Application() {
-    lateinit var component: AppComponent
-    private var mToast: Toast? = null
+class App : Application(), HasActivityInjector {
+    @Inject
+    lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+
+    override fun activityInjector(): AndroidInjector<Activity> {
+        return activityDispatchingAndroidInjector
+    }
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
-        mToast = Toast.makeText(applicationContext, null, Toast.LENGTH_LONG)
-        component = DaggerAppComponent.builder().contextModule(ContextModule(this)).build()
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-        registerActivityLifecycleCallbacks(ActivityLifecycleHandler())
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return
-        }
-        LeakCanary.install(this)
+        initDagger()
+        initStetho()
     }
 
-    fun showToast(text: String) {
-        if (mToast != null) {
-            mToast?.cancel()
+    private fun initStetho() {
+        if (BuildConfig.QA) {
+            Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                    .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                    .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                    .build()
+            )
         }
-        mToast = Toast.makeText(applicationContext, text, Toast.LENGTH_LONG)
-        mToast?.show()
     }
 
-    fun showToast(resID: Int) {
-        if (mToast != null) {
-            mToast?.cancel()
-        }
-        mToast = Toast.makeText(applicationContext, getString(resID), Toast.LENGTH_LONG)
-        mToast?.show()
-    }
-
-    companion object {
-        @SuppressLint("StaticFieldLeak")
-        @get:Synchronized
-        lateinit var instance: App
-            private set
+    private fun initDagger() {
+        DaggerAppComponent.builder()
+            .application(this)
+            .build()
+            .inject(this)
     }
 }

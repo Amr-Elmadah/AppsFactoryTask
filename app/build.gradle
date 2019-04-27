@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-def DEBUG = true
+def QA = true
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
@@ -21,7 +21,9 @@ android {
         testApplicationId globalConfiguration["testApplicationId"]
         multiDexEnabled true
     }
-
+    androidExtensions {
+        experimental = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -37,20 +39,25 @@ android {
     flavorDimensions "developer"
 
     productFlavors.all {
-        DEBUG = true
-        buildConfigField "boolean", "DEBUG", "" + DEBUG
+        QA = true
+        buildConfigField "boolean", "QA", "" + QA
     }
     productFlavors {
         staging {
             dimension "developer"
-            DEBUG = true
-            buildConfigField "boolean", "DEBUG", "" + DEBUG
+            QA = true
+            buildConfigField "boolean", "QA", "" + QA
         }
         production {
             dimension "developer"
-            DEBUG = false
-            buildConfigField "boolean", 'DEBUG', "" + DEBUG
+            QA = false
+            buildConfigField "boolean", 'QA', "" + QA
         }
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -73,15 +80,15 @@ dependencies {
     implementation presentationDependencies.picassoOkhttp
     implementation glideDependencies.glide
     implementation "jp.wasabeef:glide-transformations:3.1.1"
-    kapt glideDependencies.compiler
+    kapt  glideDependencies.compiler
     implementation presentationDependencies.roundedImageView
 
     // dagger
     implementation daggerDependencies.dagger
-    annotationProcessor daggerDependencies.daggerCompiler
+    kapt  daggerDependencies.daggerCompiler
     implementation daggerDependencies.daggerAndroid
     implementation daggerDependencies.daggerAndroidSupport
-    annotationProcessor daggerDependencies.daggerAndroidProcessor
+    kapt   daggerDependencies.daggerAndroidProcessor
 
     implementation rxDependencies.rxJava
     implementation rxDependencies.rxAndroid
@@ -97,19 +104,23 @@ dependencies {
 
     //Parcel
     implementation dataDependencies.parcelerApi
-    annotationProcessor dataDependencies.parceler
+    kapt  dataDependencies.parceler
 
     //Room DB
     implementation roomDependencies.runtime
     implementation roomDependencies.compiler
     implementation roomDependencies.rx
-    annotationProcessor roomDependencies.runtime
-    annotationProcessor roomDependencies.compiler
+    annotationProcessor  roomDependencies.runtime
+    annotationProcessor  roomDependencies.compiler
 
     debugImplementation leakCanaryDependencies.developmentLeakCanary
     releaseImplementation leakCanaryDependencies.releaseLeakCanary
 
     testImplementation dataTestDependencies.junit
-    androidTestImplementation 'androidx.test:runner:1.2.0-alpha03'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha03'
+    androidTestImplementation 'androidx.test:runner:1.2.0-alpha04'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha04'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    configurations {
+        all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+    }
 }

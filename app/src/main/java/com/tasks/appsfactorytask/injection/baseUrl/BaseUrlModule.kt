@@ -9,18 +9,18 @@ import javax.inject.Singleton
 @Module
 class BaseUrlModule {
 
-	object DAGGER_CONSTANTS {
-		const val BASE_URL = "baseUrlString"
-	}
+    object DAGGER_CONSTANTS {
+        const val BASE_URL = "baseUrlString"
+    }
 
-	private object ApiEndpointsConstants {
-		const val ProductionURL = "https://my-json-server.typicode.com/FlashScooters/Challenge/"
-		const val StagingURL = "https://my-json-server.typicode.com/FlashScooters/Challenge/"
-	}
+    private object ApiEndpointsConstants {
+        const val ProductionURL = ""
+        const val StagingURL = ""
+    }
 
-	@Provides
-	@Singleton
-	@Named(value = DAGGER_CONSTANTS.BASE_URL)
-	fun providesBaseUrl() =
-			if (BuildConfig.DEBUG) ApiEndpointsConstants.StagingURL else ApiEndpointsConstants.ProductionURL
+    @Provides
+    @Singleton
+    @Named(value = DAGGER_CONSTANTS.BASE_URL)
+    fun providesBaseUrl() =
+        if (BuildConfig.QA) ApiEndpointsConstants.StagingURL else ApiEndpointsConstants.ProductionURL
 }

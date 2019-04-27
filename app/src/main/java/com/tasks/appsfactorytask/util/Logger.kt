@@ -6,13 +6,13 @@ import com.tasks.appsfactorytask.BuildConfig
 object Logger {
 
 	fun <T : Any> d(clazz: T, msg: String) {
-		if (BuildConfig.DEBUG) {
+		if (BuildConfig.QA) {
 			Log.d(clazz::class.java.simpleName, msg)
 		}
 	}
 
 	fun e(t: Throwable) {
-		if (BuildConfig.DEBUG) {
+		if (BuildConfig.QA) {
 			t.printStackTrace()
 		}
 	}
