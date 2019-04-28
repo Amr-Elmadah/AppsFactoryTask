@@ -14,8 +14,8 @@ class BaseUrlModule {
     }
 
     private object ApiEndpointsConstants {
-        const val ProductionURL = ""
-        const val StagingURL = ""
+        const val ProductionURL = "http://ws.audioscrobbler.com/"
+        const val StagingURL = "http://ws.audioscrobbler.com/"
     }
 
     @Provides

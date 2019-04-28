@@ -1,6 +1,7 @@
 package com.tasks.appsfactorytask.ui.home.presenation.view.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import com.tasks.appsfactorytask.ui.home.domain.entity.AlbumItem
 import com.tasks.appsfactorytask.ui.home.local.mapToUI
 import com.tasks.appsfactorytask.ui.home.presenation.view.adapter.AlbumAdapter
 import com.tasks.appsfactorytask.ui.home.presenation.viewmodel.HomeViewModel
+import com.tasks.appsfactorytask.ui.searchartist.presentation.view.activity.SearchArtistActivity
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
@@ -49,9 +51,9 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupAlbumsRecyclerView() {
-        rclAlbums.setHasFixedSize(true)
-        rclAlbums.layoutManager = manager
-        rclAlbums.adapter = adapter
+        rvAlbums.setHasFixedSize(true)
+        rvAlbums.layoutManager = manager
+        rvAlbums.adapter = adapter
     }
 
     @SuppressLint("CheckResult")
@@ -70,15 +72,13 @@ class HomeActivity : AppCompatActivity() {
         })
 
         adapter.getViewClickedObservable().subscribe {
-            it.let {
-                openAlbumDetails(it)
-            }
+            openAlbumDetails(it)
         }
     }
 
 
     private fun openSearch() {
-        //TODO: Navigate to search
+        startActivity(Intent(this, SearchArtistActivity::class.java))
     }
 
     private fun openAlbumDetails(album: AlbumItem) {

@@ -11,7 +11,7 @@
             android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rclAlbums"
+            android:id="@+id/rvAlbums"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -23,7 +23,7 @@
             android:id="@+id/btnSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_curved"
+            android:background="@drawable/bg_curved_primary"
             android:textSize="@dimen/_12sdp"
             android:textColor="@android:color/white"
             android:textAllCaps="false"
@@ -32,5 +32,5 @@
             android:text="@string/search_online"
             app:layout_anchorGravity="bottom|center"
             android:layout_marginBottom="@dimen/_20sdp"
-            app:layout_anchor="@+id/rclAlbums"/>
+            app:layout_anchor="@+id/rvAlbums"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
