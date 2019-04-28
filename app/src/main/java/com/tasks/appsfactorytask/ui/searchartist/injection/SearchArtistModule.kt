@@ -15,7 +15,7 @@ import dagger.Provides
 @Module
 class SearchArtistModule {
     @Provides
-    fun provideArtistTopAlbumsRemoteDataSource(lastFMServiceAPI: LastFMServiceAPI) =
+    fun provideArtistAlbumsRemoteDataSource(lastFMServiceAPI: LastFMServiceAPI) =
         SearchArtistRemoteDataSource(lastFMServiceAPI = lastFMServiceAPI)
 
     @Provides
@@ -31,7 +31,7 @@ class SearchArtistModule {
         SearchArtistViewModel(userCase)
 
     @Provides
-    fun providelinearLayoutManager(context: Context) =
+    fun provideLinearLayoutManager(context: Context) =
         LinearLayoutManager(context)
 
     @Provides

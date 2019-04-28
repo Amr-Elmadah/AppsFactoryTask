@@ -2,12 +2,13 @@ package com.tasks.appsfactorytask.data.remote.network.response
 
 import com.google.gson.annotations.SerializedName
 
-data class ArtistTopAlbumsResponse(
-    val topalbums: Topalbums
+data class ArtistAlbumsResponse(
+    @SerializedName("topalbums")
+    val artistAlbums: TopAlbums
 )
 
 //----------------------------------------------
-data class Topalbums(
+data class TopAlbums(
     val attr: Attr,
     val album: List<Album>
 )

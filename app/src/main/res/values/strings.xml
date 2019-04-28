@@ -11,4 +11,8 @@
     <string name="artist_name">Artist Name</string>
     <string name="search_artists">Search Artists</string>
     <string name="search">Search…</string>
+
+    <!--ArtistAlbums-->
+    <string name="menu_save">Save</string>
+    <string name="menu_delete">Delete</string>
 </resources>

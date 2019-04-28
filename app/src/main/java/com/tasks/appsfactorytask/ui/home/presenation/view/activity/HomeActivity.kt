@@ -7,7 +7,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.tasks.appsfactorytask.R
 import com.tasks.appsfactorytask.base.presentation.viewmodel.ViewModelFactory
 import com.tasks.appsfactorytask.ui.home.domain.entity.AlbumItem
@@ -25,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var viewModelFactory: ViewModelFactory<HomeViewModel>
 
     @Inject
-    lateinit var manager: GridLayoutManager
+    lateinit var manager: LinearLayoutManager
 
     @Inject
     lateinit var adapter: AlbumAdapter
@@ -51,7 +52,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupAlbumsRecyclerView() {
-        rvAlbums.setHasFixedSize(true)
+        manager.orientation = RecyclerView.VERTICAL
         rvAlbums.layoutManager = manager
         rvAlbums.adapter = adapter
     }

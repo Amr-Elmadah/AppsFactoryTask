@@ -20,6 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.searchartist.presentation.view.activity.SearchArtistActivity"/>
+        <activity
+                android:name=".ui.artistablums.presetation.view.activity.ArtistAlbumsActivity"
+                android:theme="@style/NoActionbarTheme"/>
     </application>
 
 </manifest>

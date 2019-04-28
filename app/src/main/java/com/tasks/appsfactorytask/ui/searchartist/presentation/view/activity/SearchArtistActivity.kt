@@ -1,6 +1,7 @@
 package com.tasks.appsfactorytask.ui.searchartist.presentation.view.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -14,6 +15,7 @@ import com.tasks.appsfactorytask.base.presentation.view.extension.afterTextChang
 import com.tasks.appsfactorytask.base.presentation.view.extension.setVisible
 import com.tasks.appsfactorytask.base.presentation.view.extension.showSnack
 import com.tasks.appsfactorytask.base.presentation.viewmodel.ViewModelFactory
+import com.tasks.appsfactorytask.ui.artistablums.presetation.view.activity.ArtistAlbumsActivity
 import com.tasks.appsfactorytask.ui.searchartist.presentation.view.adapter.ArtistsAdapter
 import com.tasks.appsfactorytask.ui.searchartist.presentation.viewmodel.SearchArtistViewModel
 import dagger.android.AndroidInjection
@@ -65,7 +67,6 @@ class SearchArtistActivity : AppCompatActivity(), BaseRecyclerAdapter.OnLoadMore
         adapter.addOnLoadMoreListener(this, rvArtist, manager)
         rvArtist.layoutManager = manager
         rvArtist.adapter = adapter
-
     }
 
     @SuppressLint("CheckResult")
@@ -102,7 +103,9 @@ class SearchArtistActivity : AppCompatActivity(), BaseRecyclerAdapter.OnLoadMore
     }
 
     private fun openAlbumsActivity(artistName: String) {
-        //TODO: Navigate to ArtistAlbums
+        val intent = Intent(this, ArtistAlbumsActivity::class.java)
+        intent.putExtra(ArtistAlbumsActivity.EXTRA_ARTIST_NAME, artistName)
+        startActivity(intent)
     }
 
     override fun onLoadMore() {

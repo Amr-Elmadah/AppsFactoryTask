@@ -10,7 +10,6 @@ class HomeViewModel @Inject constructor(private val getAlbumsUseCase: GetAlbumsL
     BaseViewModel() {
 
     fun getAllStoredLocalAlbums(): LiveData<List<AlbumEntity>> {
-
         return getAlbumsUseCase.build()
     }
 }

@@ -23,16 +23,20 @@
         <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
-                android:background="@android:color/holo_red_light"/>
+                android:background="@color/colorPrimary"/>
 
         <TextView
                 android:id="@+id/tvAlbumName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/_20sdp"/>
+                android:textSize="@dimen/_14sdp"/>
 
         <TextView
                 android:id="@+id/tvArtistName"
@@ -40,8 +44,10 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/_10sdp"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="@dimen/_16sdp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_12sdp"
                 android:textStyle="bold"/>
 
     </LinearLayout>
