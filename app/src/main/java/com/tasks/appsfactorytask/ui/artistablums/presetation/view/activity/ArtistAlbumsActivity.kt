@@ -1,6 +1,7 @@
 package com.tasks.appsfactorytask.ui.artistablums.presetation.view.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import com.tasks.appsfactorytask.R
 import com.tasks.appsfactorytask.base.presentation.view.extension.setVisible
 import com.tasks.appsfactorytask.base.presentation.view.extension.showSnack
 import com.tasks.appsfactorytask.base.presentation.viewmodel.ViewModelFactory
+import com.tasks.appsfactorytask.ui.albumdetails.AlbumDetailsActivity
 import com.tasks.appsfactorytask.ui.artistablums.presetation.view.adapter.ArtistAlbumAdapter
 import com.tasks.appsfactorytask.ui.artistablums.presetation.viewmodel.ArtistAlbumsViewModel
 import com.tasks.appsfactorytask.ui.home.domain.entity.AlbumItem
@@ -115,12 +117,14 @@ class ArtistAlbumsActivity : AppCompatActivity() {
         }
     }
 
-    private fun openAlbumDetailsActivity(artistAlbum: AlbumItem) {
-        //TODO: Navigate to Album details
+    private fun openAlbumDetailsActivity(album: AlbumItem) {
+        val intent = Intent(this, AlbumDetailsActivity::class.java)
+        intent.putExtra(AlbumDetailsActivity.EXTRA_ALBUM, album)
+        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.artist_albums_menu, menu)
         return true
     }
 }

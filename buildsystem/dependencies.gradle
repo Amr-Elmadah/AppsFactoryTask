@@ -17,6 +17,7 @@ ext {
     rxJavaVersion = '2.2.5'
     rxAndroidVersion = '2.1.0'
     daggerVersion = '2.21'
+    dataBindingVersion = '2.21'
 
     javaxAnnotationVersion = '1.0'
     javaxInjectVersion = '1'
@@ -69,7 +70,9 @@ ext {
 
     // packages
     reactivePackage = 'io.reactivex.rxjava2'
+
     daggerPackage = 'com.google.dagger'
+    dataBindingPackage = 'com.android.databinding'
     glidePackage = 'com.github.bumptech.glide'
     lifecyclePackage = 'android.arch.lifecycle'
     workmanagerPackage = 'android.arch.work'
@@ -140,10 +143,14 @@ ext {
             daggerAndroidProcessor: buildDependency(daggerPackage, 'dagger-android-processor', daggerVersion)
     ]
 
+    dataBindingDependencies = [
+            dataBinding: buildDependency(dataBindingPackage, 'compiler', dataBindingVersion)
+    ]
+
     glideDependencies = [
             glide          : buildDependency(glidePackage, 'glide', glideVersion),
             compiler       : buildDependency(glidePackage, 'compiler', glideVersion),
-            transformations: buildDependency('jp.wasabeef', 'glide-transformations', '3.3.0')
+            transformations: buildDependency('jp.wasabeef', 'glide-transformations', '3.1.1')
     ]
 
     lifecycleDependencies = [

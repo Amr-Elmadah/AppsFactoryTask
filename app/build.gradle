@@ -24,6 +24,11 @@ android {
     androidExtensions {
         experimental = true
     }
+
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -80,15 +85,17 @@ dependencies {
     implementation presentationDependencies.picassoOkhttp
     implementation glideDependencies.glide
     implementation "jp.wasabeef:glide-transformations:3.1.1"
-    kapt  glideDependencies.compiler
+    kapt glideDependencies.compiler
     implementation presentationDependencies.roundedImageView
+    implementation 'com.github.chrisbanes:PhotoView:1.2.6'
+    kapt dataBindingDependencies.dataBinding
 
     // dagger
     implementation daggerDependencies.dagger
-    kapt  daggerDependencies.daggerCompiler
+    kapt daggerDependencies.daggerCompiler
     implementation daggerDependencies.daggerAndroid
     implementation daggerDependencies.daggerAndroidSupport
-    kapt   daggerDependencies.daggerAndroidProcessor
+    kapt daggerDependencies.daggerAndroidProcessor
 
     implementation rxDependencies.rxJava
     implementation rxDependencies.rxAndroid
@@ -104,14 +111,14 @@ dependencies {
 
     //Parcel
     implementation dataDependencies.parcelerApi
-    kapt  dataDependencies.parceler
+    kapt dataDependencies.parceler
 
     //Room DB
     implementation roomDependencies.runtime
     implementation roomDependencies.compiler
     implementation roomDependencies.rx
-    annotationProcessor  roomDependencies.runtime
-    annotationProcessor  roomDependencies.compiler
+    annotationProcessor roomDependencies.runtime
+    annotationProcessor roomDependencies.compiler
 
     debugImplementation leakCanaryDependencies.developmentLeakCanary
     releaseImplementation leakCanaryDependencies.releaseLeakCanary

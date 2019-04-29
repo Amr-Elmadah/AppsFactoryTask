@@ -14,15 +14,22 @@
             android:theme="@style/AppTheme">
         <activity android:name=".ui.home.presenation.view.activity.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action
+                        android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.searchartist.presentation.view.activity.SearchArtistActivity"/>
         <activity
-                android:name=".ui.artistablums.presetation.view.activity.ArtistAlbumsActivity"
-                android:theme="@style/NoActionbarTheme"/>
+                android:name=".ui.searchartist.presentation.view.activity.SearchArtistActivity"
+                android:theme="@style/ActionBarTheme"/>
+        <activity
+                android:name=".ui.artistablums.presetation.view.activity.ArtistAlbumsActivity"/>
+
+        <activity
+                android:name=".ui.albumdetails.AlbumDetailsActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"/>
+
     </application>
 
 </manifest>

@@ -22,7 +22,7 @@
                 android:layout_weight="1"
                 android:textSize="@dimen/_14sdp"
                 android:inputType="textPersonName"
-                android:hint="@string/search"
+                android:hint="@string/search_hint"
                 android:background="@android:color/transparent"
                 android:layout_height="wrap_content"/>
 

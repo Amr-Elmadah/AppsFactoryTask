@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="album"
+                type="com.tasks.appsfactorytask.ui.home.domain.entity.AlbumItem"/>
+
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+
+        <uk.co.senab.photoview.PhotoView
+                android:id="@+id/imgAlbumCover"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                bind:backgroundImageUrl="@{album.albumImage}"
+                android:layout_weight="1"/>
+
+        <TextView
+                android:id="@+id/tvAlbumName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_14sdp"
+                android:text="@{album.albumName}"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/tvAlbumTrack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:autoLink="web"
+                android:text="@{album.albumUrl}"
+                android:textColorLink="@color/colorPrimary"
+                android:textSize="@dimen/_12sdp"/>
+
+        <TextView
+                android:id="@+id/tvAlbumArtistName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp"
+                android:textColor="@android:color/black"
+                android:text="@{album.artistName}"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"/>
+
+    </LinearLayout>
+</layout>

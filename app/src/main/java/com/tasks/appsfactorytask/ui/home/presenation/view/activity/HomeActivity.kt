@@ -3,6 +3,7 @@ package com.tasks.appsfactorytask.ui.home.presenation.view.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tasks.appsfactorytask.R
 import com.tasks.appsfactorytask.base.presentation.viewmodel.ViewModelFactory
+import com.tasks.appsfactorytask.ui.albumdetails.AlbumDetailsActivity
 import com.tasks.appsfactorytask.ui.home.domain.entity.AlbumItem
 import com.tasks.appsfactorytask.ui.home.local.mapToUI
 import com.tasks.appsfactorytask.ui.home.presenation.view.adapter.AlbumAdapter
@@ -42,13 +44,26 @@ class HomeActivity : AppCompatActivity() {
         setupControllers()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.home_menu, menu)
+        return true
+    }
+
     private fun setupControllers() {
         supportActionBar?.title = getString(R.string.home)
-        btnSearch.setOnClickListener {
-            openSearch()
-        }
+        setupToolbar()
         setupAlbumsRecyclerView()
         observeCachedAlbumsChange()
+    }
+
+    private fun setupToolbar() {
+        setSupportActionBar(toolbar)
+        toolbar.setOnMenuItemClickListener { item ->
+            if (item.itemId == R.id.miSearchOnline) {
+                openSearch()
+            }
+            false
+        }
     }
 
     private fun setupAlbumsRecyclerView() {
@@ -83,6 +98,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun openAlbumDetails(album: AlbumItem) {
-        //Todo: Navigate to details
+        val intent = Intent(this, AlbumDetailsActivity::class.java)
+        intent.putExtra(AlbumDetailsActivity.EXTRA_ALBUM, album)
+        startActivity(intent)
     }
 }
