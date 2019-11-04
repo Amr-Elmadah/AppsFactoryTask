@@ -7,6 +7,6 @@ import javax.inject.Inject
 
 class HomeRepositoryImp @Inject constructor(private val localDataSource: HomeLocalDataSource) :
     HomeRepository {
-    override fun getCachedAlbums(): LiveData<List<AlbumEntity>> =
+    override suspend fun getCachedAlbums(): LiveData<List<AlbumEntity>> =
         localDataSource.getAllAlbums()
 }

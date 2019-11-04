@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -14,7 +14,6 @@ import com.tasks.appsfactorytask.base.presentation.view.adapter.BaseRecyclerAdap
 import com.tasks.appsfactorytask.base.presentation.view.extension.afterTextChanged
 import com.tasks.appsfactorytask.base.presentation.view.extension.setVisible
 import com.tasks.appsfactorytask.base.presentation.view.extension.showSnack
-import com.tasks.appsfactorytask.base.presentation.viewmodel.ViewModelFactory
 import com.tasks.appsfactorytask.ui.artistablums.presetation.view.activity.ArtistAlbumsActivity
 import com.tasks.appsfactorytask.ui.searchartist.presentation.view.adapter.ArtistsAdapter
 import com.tasks.appsfactorytask.ui.searchartist.presentation.viewmodel.SearchArtistViewModel
@@ -24,11 +23,8 @@ import javax.inject.Inject
 
 class SearchArtistActivity : AppCompatActivity(), BaseRecyclerAdapter.OnLoadMoreListener {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory<SearchArtistViewModel>
-
     private val mViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(SearchArtistViewModel::class.java)
+        ViewModelProvider(this).get(SearchArtistViewModel::class.java)
     }
 
     @Inject
@@ -38,6 +34,7 @@ class SearchArtistActivity : AppCompatActivity(), BaseRecyclerAdapter.OnLoadMore
     lateinit var adapter: ArtistsAdapter
 
     var isNewSearch = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
@@ -98,7 +95,10 @@ class SearchArtistActivity : AppCompatActivity(), BaseRecyclerAdapter.OnLoadMore
             }, commonErrorObserver = Observer {
 
             }, networkErrorConsumer = Observer {
-                llMainContent.showSnack(getString(R.string.internet_connection), Snackbar.LENGTH_LONG)
+                llMainContent.showSnack(
+                    getString(R.string.internet_connection),
+                    Snackbar.LENGTH_LONG
+                )
             })
     }
 

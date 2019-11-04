@@ -15,6 +15,7 @@ ext {
 
     //data libraries
     rxJavaVersion = '2.2.5'
+    coroutinesVersion = '1.3.2'
     rxAndroidVersion = '2.1.0'
     daggerVersion = '2.21'
     dataBindingVersion = '2.21'
@@ -22,20 +23,20 @@ ext {
     javaxAnnotationVersion = '1.0'
     javaxInjectVersion = '1'
     gsonVersion = '2.8.5'
-    retrofit = '2.5.0'
-    okhttp = '3.10.0'
-    okhttpLogging = '3.8.0'
-    okhttpFacebook = '1.5.0'
+    retrofit = '2.6.2'
+    okhttp = '4.2.2'
+    okhttpLogging = '4.2.2'
+    okhttpFacebook = '1.5.1'
     androidAnnotationsVersion = '21.0.3'
     parcelerApi = '1.1.12'
-    lifecycleVersion = '1.1.1'
+    lifecycleVersion = '2.2.0-alpha03'
     workManagerVersion = '1.0.0-alpha09'
     roomVersion = '1.1.1'
 
     //ui libraries
     butterKnifeVersion = '10.0.0'
     androidxVersion = '1.0.0'
-    androidxAppCompact = '1.1.0-alpha04'
+    androidxAppCompact = '1.1.0'
     androidxConstrainLayout = '1.1.3'
     arrowVersion = '1.0.0'
     sdpAndroid = '1.0.6'
@@ -70,11 +71,12 @@ ext {
 
     // packages
     reactivePackage = 'io.reactivex.rxjava2'
+    coroutinesPackage = 'org.jetbrains.kotlinx'
 
     daggerPackage = 'com.google.dagger'
     dataBindingPackage = 'com.android.databinding'
     glidePackage = 'com.github.bumptech.glide'
-    lifecyclePackage = 'android.arch.lifecycle'
+    lifecyclePackage = 'androidx.lifecycle'
     workmanagerPackage = 'android.arch.work'
     roomPackage = 'android.arch.persistence.room'
 
@@ -109,8 +111,6 @@ ext {
 
     dataDependencies = [
             gson              : "com.google.code.gson:gson:${gsonVersion}",
-            rxJava            : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
             androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
@@ -134,6 +134,11 @@ ext {
             rxJava   : buildDependency(reactivePackage, 'rxjava', rxJavaVersion),
             rxAndroid: buildDependency(reactivePackage, 'rxandroid', rxAndroidVersion)]
 
+    //Coroutines
+    coroutinesDependencies = [
+            coroutinesCore   : buildDependency(coroutinesPackage, 'kotlinx-coroutines-core', coroutinesVersion),
+            coroutinesAndroid: buildDependency(coroutinesPackage, 'kotlinx-coroutines-android', coroutinesVersion)]
+
     //Dagger Libraries dependencies
     daggerDependencies = [
             dagger                : buildDependency(daggerPackage, 'dagger', daggerVersion),
@@ -155,11 +160,11 @@ ext {
 
     lifecycleDependencies = [
             // ViewModel and LiveData
-            extensions: buildDependency(lifecyclePackage, 'extensions', lifecycleVersion),
+            extensions: buildDependency(lifecyclePackage, 'lifecycle-extensions', lifecycleVersion),
             // alternatively - Lifecycles only (no ViewModel or LiveData).
             //     Support library depends on this lightweight import
-            runtime   : buildDependency(lifecyclePackage, 'runtime', lifecycleVersion),
-            compiler  : buildDependency(lifecyclePackage, 'compiler', lifecycleVersion)
+            runtime   : buildDependency(lifecyclePackage, 'lifecycle-runtime', lifecycleVersion),
+            compiler  : buildDependency(lifecyclePackage, 'lifecycle-compiler', lifecycleVersion)
     ]
 
     //work manager

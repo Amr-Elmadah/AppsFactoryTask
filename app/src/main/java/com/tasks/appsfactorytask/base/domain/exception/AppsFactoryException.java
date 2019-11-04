@@ -77,7 +77,5 @@ public class AppsFactoryException extends Exception {
         TIME_OUT,
 
         UNAUTHORIZED
-
     }
-
 }

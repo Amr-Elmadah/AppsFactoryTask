@@ -7,8 +7,8 @@ def QA = true
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
-    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
-    buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
 
     defaultConfig {
         minSdkVersion globalConfiguration["androidMinSdkVersion"]
@@ -69,7 +69,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.1.0-alpha05'
+    implementation 'androidx.core:core-ktx:1.2.0-beta01'
 
     //Androidx
     implementation presentationDependencies.appcompat
@@ -78,6 +78,7 @@ dependencies {
     implementation presentationDependencies.cardview
     implementation presentationDependencies.recyclerview
     implementation presentationDependencies.constraintlayout
+
     //UI
     implementation presentationDependencies.sdpAndroid
     implementation presentationDependencies.avLoader
@@ -90,7 +91,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:1.2.6'
     kapt dataBindingDependencies.dataBinding
 
-    // dagger
+    //Dagger
     implementation daggerDependencies.dagger
     kapt daggerDependencies.daggerCompiler
     implementation daggerDependencies.daggerAndroid
@@ -99,6 +100,10 @@ dependencies {
 
     implementation rxDependencies.rxJava
     implementation rxDependencies.rxAndroid
+
+    //Coroutines
+    implementation coroutinesDependencies.coroutinesCore
+    implementation coroutinesDependencies.coroutinesAndroid
 
     //Network
     implementation retrofitDependencies.retrofit
@@ -119,14 +124,16 @@ dependencies {
     implementation roomDependencies.rx
     annotationProcessor roomDependencies.runtime
     annotationProcessor roomDependencies.compiler
+    kapt roomDependencies.runtime
+    kapt roomDependencies.compiler
 
     debugImplementation leakCanaryDependencies.developmentLeakCanary
     releaseImplementation leakCanaryDependencies.releaseLeakCanary
 
     //Test
     testImplementation dataTestDependencies.junit
-    androidTestImplementation 'androidx.test:runner:1.2.0-alpha04'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha04'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
@@ -134,7 +141,7 @@ dependencies {
     androidTestImplementation 'org.mockito:mockito-android:2.7.22'
     testImplementation "android.arch.core:core-testing:1.1.1"
 
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation lifecycleDependencies.extensions
     configurations {
         all*.exclude group: 'com.google.guava', module: 'listenablefuture'
     }

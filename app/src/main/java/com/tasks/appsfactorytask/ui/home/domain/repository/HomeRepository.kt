@@ -4,5 +4,5 @@ import androidx.lifecycle.LiveData
 import com.tasks.appsfactorytask.data.local.entity.AlbumEntity
 
 interface HomeRepository {
-    fun getCachedAlbums(): LiveData<List<AlbumEntity>>
+    suspend fun getCachedAlbums(): LiveData<List<AlbumEntity>>
 }

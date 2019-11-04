@@ -6,14 +6,13 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.tasks.appsfactorytask.R
 import com.tasks.appsfactorytask.base.presentation.view.extension.setVisible
 import com.tasks.appsfactorytask.base.presentation.view.extension.showSnack
-import com.tasks.appsfactorytask.base.presentation.viewmodel.ViewModelFactory
 import com.tasks.appsfactorytask.ui.albumdetails.AlbumDetailsActivity
 import com.tasks.appsfactorytask.ui.artistablums.presetation.view.adapter.ArtistAlbumAdapter
 import com.tasks.appsfactorytask.ui.artistablums.presetation.viewmodel.ArtistAlbumsViewModel
@@ -23,12 +22,9 @@ import kotlinx.android.synthetic.main.activity_artist_albums.*
 import javax.inject.Inject
 
 class ArtistAlbumsActivity : AppCompatActivity() {
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory<ArtistAlbumsViewModel>
-
 
     private val mViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(ArtistAlbumsViewModel::class.java)
+        ViewModelProvider(this).get(ArtistAlbumsViewModel::class.java)
     }
 
     @Inject
@@ -107,7 +103,10 @@ class ArtistAlbumsActivity : AppCompatActivity() {
                     progress.setVisible(it)
                 }
             }, networkErrorConsumer = Observer {
-                llMainContent.showSnack(getString(R.string.internet_connection), Snackbar.LENGTH_LONG)
+                llMainContent.showSnack(
+                    getString(R.string.internet_connection),
+                    Snackbar.LENGTH_LONG
+                )
             })
 
         adapter.getViewClickedObservable().subscribe {

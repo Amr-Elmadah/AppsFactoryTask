@@ -6,7 +6,7 @@ import com.tasks.appsfactorytask.data.local.dao.AlbumDao
 import com.tasks.appsfactorytask.data.local.entity.AlbumEntity
 
 @Database(entities = [AlbumEntity::class], version = 1, exportSchema = false)
-public abstract class AlbumsDatabase : RoomDatabase() {
+abstract class AlbumsDatabase : RoomDatabase() {
     companion object {
         val DATABASE_NAME: String = "AlbumsDataBase"
     }

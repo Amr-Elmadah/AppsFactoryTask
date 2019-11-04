@@ -1,17 +1,15 @@
 package com.tasks.appsfactorytask.ui.home.presenation.view.activity
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tasks.appsfactorytask.R
-import com.tasks.appsfactorytask.base.presentation.viewmodel.ViewModelFactory
 import com.tasks.appsfactorytask.ui.albumdetails.AlbumDetailsActivity
 import com.tasks.appsfactorytask.ui.home.domain.entity.AlbumItem
 import com.tasks.appsfactorytask.ui.home.local.mapToUI
@@ -23,10 +21,6 @@ import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory<HomeViewModel>
-
     @Inject
     lateinit var manager: LinearLayoutManager
 
@@ -34,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var adapter: AlbumAdapter
 
     private val mViewModel by lazy {
-        ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
+        ViewModelProvider(this).get(HomeViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,26 +66,23 @@ class HomeActivity : AppCompatActivity() {
         rvAlbums.adapter = adapter
     }
 
-    @SuppressLint("CheckResult")
     private fun observeCachedAlbumsChange() {
-        mViewModel.getAllStoredLocalAlbums().observe(this, Observer { it ->
-            if (it != null) {
+        mViewModel.getAllStoredLocalAlbums().observe(this@HomeActivity, Observer { it ->
+            it.let {
                 if (it.isNotEmpty()) {
                     llNoData.visibility = View.GONE
-                    adapter.addMoreItemsFirst(it.map { it.mapToUI() }.toMutableList())
+                    adapter.addMoreItemsFirst(it.map { albumEntity -> albumEntity.mapToUI() }.toMutableList())
                 } else {
                     adapter.getItems().clear()
                     adapter.notifyDataSetChanged()
                     llNoData.visibility = View.VISIBLE
                 }
+                adapter.getViewClickedObservable().subscribe { albumItem ->
+                    openAlbumDetails(albumItem)
+                }
             }
         })
-
-        adapter.getViewClickedObservable().subscribe {
-            openAlbumDetails(it)
-        }
     }
-
 
     private fun openSearch() {
         startActivity(Intent(this, SearchArtistActivity::class.java))

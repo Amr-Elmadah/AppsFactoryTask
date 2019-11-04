@@ -9,7 +9,6 @@ import com.tasks.appsfactorytask.ui.searchartist.presentation.view.activity.Sear
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-
 @Module
 abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = [(HomeModule::class)])

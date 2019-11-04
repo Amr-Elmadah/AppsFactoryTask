@@ -6,6 +6,6 @@ import com.tasks.appsfactorytask.data.local.entity.AlbumEntity
 import javax.inject.Inject
 
 class GetAlbumsLocalUseCase @Inject constructor(private val repository: HomeRepository) {
-    fun build(): LiveData<List<AlbumEntity>> =
+    suspend fun build(): LiveData<List<AlbumEntity>> =
         repository.getCachedAlbums()
 }

@@ -1,7 +1,6 @@
 package com.tasks.appsfactorytask.ui.artistablums.injection
 
 import android.content.Context
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tasks.appsfactorytask.data.local.dao.AlbumDao
 import com.tasks.appsfactorytask.data.remote.network.retrofit.LastFMServiceAPI

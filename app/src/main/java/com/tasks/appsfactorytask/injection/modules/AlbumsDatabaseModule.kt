@@ -20,7 +20,7 @@ class AlbumsDatabaseModule {
 
     @Singleton
     @Provides
-    fun provideAlbumDao(tvMazeDatabase: AlbumsDatabase): AlbumDao {
-        return tvMazeDatabase.AlbumDao()
+    fun provideAlbumDao(albumsDatabase: AlbumsDatabase): AlbumDao {
+        return albumsDatabase.AlbumDao()
     }
 }
